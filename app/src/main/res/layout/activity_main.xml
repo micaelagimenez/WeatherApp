@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:valueFrom="0.0"
         android:valueTo="100.0"
-        android:stepSize="20.0"
+        android:stepSize="25.0"
         android:value="0.0"
         android:layout_marginStart="@dimen/size_4"
         android:layout_marginEnd="@dimen/size_4"

@@ -10,4 +10,9 @@
     <string name="tv_wind">Wind:&#160; </string>
     <string name="tv_instructions">Slide to explore other cities or click below to get your own city</string>
     <string name="dialog_button">Understood</string>
+    <string name="slider_london">London</string>
+    <string name="slider_montevideo">Montevideo</string>
+    <string name="slider_san_pablo">San Pablo</string>
+    <string name="slider_munich">Munich</string>
+    <string name="slider_buenos_aires">Buenos Aires</string>
 </resources>

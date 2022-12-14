@@ -31,12 +31,15 @@ class MainActivity : AppCompatActivity() {
     private val weatherViewModel: WeatherViewModel by viewModels()
     var longitude = 0.0
     var latitude = 0.0
-    var buttonClickCounter = 0
+    private var buttonClickCounter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Set initial weather from London
+        weatherViewModel.getWeather(resources.getString(R.string.slider_london), BuildConfig.API_KEY)
 
         // Get weather from user's GPS
         binding.ibGetLocation.setOnClickListener {
@@ -44,9 +47,30 @@ class MainActivity : AppCompatActivity() {
             initiateGps()
         }
 
-        // todo pass region
-        weatherViewModel.getWeather("London", BuildConfig.API_KEY)
+        // Format slider's labels to default cities
+        binding.discreteSlider.setLabelFormatter { value ->
+            when(value){
+                0F -> resources.getString(R.string.slider_london)
+                25F ->  resources.getString(R.string.slider_montevideo)
+                50F ->  resources.getString(R.string.slider_buenos_aires)
+                75F ->  resources.getString(R.string.slider_munich)
+                100F ->  resources.getString(R.string.slider_san_pablo)
+                else ->  {"undetermined"}
+            }
+        }
 
+        // Get weather data from the selected city on the slider
+        binding.discreteSlider.addOnChangeListener { _, value, _ ->
+            when(value){
+                0F -> weatherViewModel.getWeather(resources.getString(R.string.slider_london), BuildConfig.API_KEY)
+                25F -> weatherViewModel.getWeather(resources.getString(R.string.slider_montevideo), BuildConfig.API_KEY)
+                50F -> weatherViewModel.getWeather(resources.getString(R.string.slider_buenos_aires), BuildConfig.API_KEY)
+                75F -> weatherViewModel.getWeather(resources.getString(R.string.slider_munich), BuildConfig.API_KEY)
+                100F -> weatherViewModel.getWeather(resources.getString(R.string.slider_san_pablo), BuildConfig.API_KEY)
+            }
+        }
+
+        // Observe viewmodel's data changes
         weatherViewModel.weather.observe(this) {
             when (it.status) {
                 Resource.Status.LOADING -> {
@@ -57,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                     binding.progressBar.isVisible = false
                     binding.weatherError.root.isVisible = false
 
-                    // bind data
+                    // Bind data to view
                     if (it.data != null) {
                         for (i in it.data.weather) {
                             binding.tvDescription.text = i.main
@@ -94,7 +118,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initiateGps() {
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
         // Check if permissions are already granted
         if (checkIfPermissionsAreGranted()) {
             if (buttonClickCounter == 1) showGpsRequestDialog()
