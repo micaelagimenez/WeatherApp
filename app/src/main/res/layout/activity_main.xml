@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
@@ -62,6 +67,7 @@
         android:layout_height="60dp"
         android:src="@drawable/ic_baseline_location_on_24"
         android:layout_marginTop="@dimen/size_2"
+        android:layout_marginBottom="@dimen/size_4"
         android:backgroundTint="@color/black"
         app:layout_constraintTop_toBottomOf="@id/tv_instructions"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,9 +106,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="@dimen/size_8"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintEnd_toStartOf="@id/gl_vertical_end"
-        app:layout_constraintStart_toStartOf="@id/gl_vertical_start"
-        app:layout_constraintBottom_toTopOf="@id/gl_horizontal_top">
+        app:layout_constraintStart_toStartOf="@id/gl_vertical_start">
 
         <TextView
             android:id="@+id/tv_description"
@@ -120,55 +127,58 @@
             tools:text="13 °C"/>
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/tv_min_temperature"
+    <LinearLayout
+        android:id="@+id/temps_linear_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_5"
-        style="@style/Detail"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/size_4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_layout"
-        tools:text="Min temp: 5"/>
+        app:layout_constraintTop_toBottomOf="@id/linear_layout">
 
-    <TextView
-        android:id="@+id/tv_max_temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Detail"
-        android:layout_marginTop="@dimen/size_3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_min_temperature"
-        tools:text="Max temp: 25"/>
+
+        <TextView
+            android:id="@+id/tv_min_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Detail"
+            tools:text="Min: 5"/>
+
+        <TextView
+            android:id="@+id/tv_max_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            style="@style/Detail"
+            tools:text="Max: 25"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_wind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/Detail"
-        android:layout_marginBottom="@dimen/size_5"
+        android:layout_marginTop="@dimen/size_4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_location"
+        app:layout_constraintTop_toBottomOf="@id/temps_linear_layout"
         tools:text="Wind: 50 p/h"/>
 
     <ImageView
         android:id="@+id/iv_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gl_horizontal_top"
-        app:layout_constraintBottom_toTopOf="@id/gl_horizontal_bottom"
-        tools:src="@drawable/ic_launcher_background"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_wind"
+        tools:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/tv_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/gl_horizontal_bottom"
@@ -194,3 +204,4 @@
         tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
