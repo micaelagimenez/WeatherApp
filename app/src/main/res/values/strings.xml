@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings related to Main Activity -->
+    <string name="error_layout_error_tv_message">There was an error getting the data</string>
+    <string name="error_layout_error_bt_retry">Retry</string>
+    <string name="tv_max_temp">Max:&#160; </string>
+    <string name="tv_min_temp">Min:&#160; </string>
+    <string name="tv_wind">Wind:&#160; </string>
+    <string name="tv_instructions">Slide to explore other cities or click below to get your own city</string>
+    <string name="dialog_button">Understood</string>
+</resources>

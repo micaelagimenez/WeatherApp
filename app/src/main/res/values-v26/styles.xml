@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Detail">
+        <item name="android:font">@font/duru_sans</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Header">
+        <item name="android:font">@font/duru_sans</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>
