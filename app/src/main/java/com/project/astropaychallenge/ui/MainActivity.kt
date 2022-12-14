@@ -39,7 +39,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Set initial weather from London
-        weatherViewModel.getWeather(resources.getString(R.string.slider_london), BuildConfig.API_KEY)
+        weatherViewModel.getWeather(
+            resources.getString(R.string.slider_london),
+            BuildConfig.API_KEY
+        )
 
         // Get weather from user's GPS
         binding.ibGetLocation.setOnClickListener {
@@ -49,24 +52,41 @@ class MainActivity : AppCompatActivity() {
 
         // Format slider's labels to default cities
         binding.discreteSlider.setLabelFormatter { value ->
-            when(value){
+            when (value) {
                 0F -> resources.getString(R.string.slider_london)
-                25F ->  resources.getString(R.string.slider_montevideo)
-                50F ->  resources.getString(R.string.slider_buenos_aires)
-                75F ->  resources.getString(R.string.slider_munich)
-                100F ->  resources.getString(R.string.slider_san_pablo)
-                else ->  {"undetermined"}
+                25F -> resources.getString(R.string.slider_montevideo)
+                50F -> resources.getString(R.string.slider_buenos_aires)
+                75F -> resources.getString(R.string.slider_munich)
+                100F -> resources.getString(R.string.slider_san_pablo)
+                else -> {
+                    "undetermined"
+                }
             }
         }
 
         // Get weather data from the selected city on the slider
         binding.discreteSlider.addOnChangeListener { _, value, _ ->
-            when(value){
-                0F -> weatherViewModel.getWeather(resources.getString(R.string.slider_london), BuildConfig.API_KEY)
-                25F -> weatherViewModel.getWeather(resources.getString(R.string.slider_montevideo), BuildConfig.API_KEY)
-                50F -> weatherViewModel.getWeather(resources.getString(R.string.slider_buenos_aires), BuildConfig.API_KEY)
-                75F -> weatherViewModel.getWeather(resources.getString(R.string.slider_munich), BuildConfig.API_KEY)
-                100F -> weatherViewModel.getWeather(resources.getString(R.string.slider_san_pablo), BuildConfig.API_KEY)
+            when (value) {
+                0F -> weatherViewModel.getWeather(
+                    resources.getString(R.string.slider_london),
+                    BuildConfig.API_KEY
+                )
+                25F -> weatherViewModel.getWeather(
+                    resources.getString(R.string.slider_montevideo),
+                    BuildConfig.API_KEY
+                )
+                50F -> weatherViewModel.getWeather(
+                    resources.getString(R.string.slider_buenos_aires),
+                    BuildConfig.API_KEY
+                )
+                75F -> weatherViewModel.getWeather(
+                    resources.getString(R.string.slider_munich),
+                    BuildConfig.API_KEY
+                )
+                100F -> weatherViewModel.getWeather(
+                    resources.getString(R.string.slider_san_pablo),
+                    BuildConfig.API_KEY
+                )
             }
         }
 
@@ -76,10 +96,14 @@ class MainActivity : AppCompatActivity() {
                 Resource.Status.LOADING -> {
                     binding.progressBar.isVisible = true
                     binding.weatherError.root.isVisible = false
+                    binding.ivWeather.isVisible = true
+                    binding.tvLocation.isVisible = true
                 }
                 Resource.Status.SUCCESS -> {
                     binding.progressBar.isVisible = false
                     binding.weatherError.root.isVisible = false
+                    binding.ivWeather.isVisible = true
+                    binding.tvLocation.isVisible = true
 
                     // Bind data to view
                     if (it.data != null) {
@@ -101,8 +125,10 @@ class MainActivity : AppCompatActivity() {
                 Resource.Status.ERROR -> {
                     binding.progressBar.isVisible = false
                     binding.weatherError.root.isVisible = true
+                    binding.ivWeather.isVisible = false
+                    binding.tvLocation.isVisible = false
                     binding.weatherError.btnRetry.setOnClickListener {
-                        weatherViewModel.getWeather("London", BuildConfig.API_KEY)
+                        reloadData()
                         binding.progressBar.isVisible = false
                     }
                 }
@@ -179,5 +205,31 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton(resources.getString(R.string.dialog_button), null)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .show()
+    }
+
+    // Reload data on error according to current value on slider
+    private fun reloadData(){
+        when(binding.discreteSlider.value){
+            0F -> weatherViewModel.getWeather(
+                resources.getString(R.string.slider_london),
+                BuildConfig.API_KEY
+            )
+            25F -> weatherViewModel.getWeather(
+                resources.getString(R.string.slider_montevideo),
+                BuildConfig.API_KEY
+            )
+            50F -> weatherViewModel.getWeather(
+                resources.getString(R.string.slider_buenos_aires),
+                BuildConfig.API_KEY
+            )
+            75F -> weatherViewModel.getWeather(
+                resources.getString(R.string.slider_munich),
+                BuildConfig.API_KEY
+            )
+            100F -> weatherViewModel.getWeather(
+                resources.getString(R.string.slider_san_pablo),
+                BuildConfig.API_KEY
+            )
+        }
     }
 }

@@ -17,10 +17,10 @@ abstract class BaseDataSource {
                 if (body != null) {
                     Resource.success(body)
                 } else {
-                    error("Code ${response.code()}: ${response.message()}")
+                    Resource.error(response.message(), null)
                 }
             } else {
-                error("Code ${response.code()}: ${response.message()}")
+                Resource.error(response.message(), null)
             }
         } catch (e: Exception) {
             val errorMessage = when (e) {
@@ -30,7 +30,7 @@ abstract class BaseDataSource {
                 is ConnectException -> "No internet!"
                 else -> e.localizedMessage
             }
-            error(errorMessage)
+            Resource.error(errorMessage, null)
         }
     }
 }

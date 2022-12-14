@@ -1,207 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    android:fillViewport="true">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="25sp"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:id="@+id/toolbar_title" />
-    </androidx.appcompat.widget.Toolbar>
-
-    <com.google.android.material.slider.Slider
-        android:id="@+id/discreteSlider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:valueFrom="0.0"
-        android:valueTo="100.0"
-        android:stepSize="25.0"
-        android:value="0.0"
-        android:layout_marginStart="@dimen/size_4"
-        android:layout_marginEnd="@dimen/size_4"
-        android:layout_marginTop="@dimen/size_3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gl_horizontal_bottom"/>
-
-    <TextView
-        android:id="@+id/tv_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:lines="2"
-        android:gravity="center"
-        android:text="@string/tv_instructions"
-        style="@style/Instructions"
-        android:layout_marginStart="@dimen/size_4"
-        android:layout_marginEnd="@dimen/size_4"
-        app:layout_constraintTop_toBottomOf="@id/discreteSlider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <ImageButton
-        android:id="@+id/ib_get_location"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_baseline_location_on_24"
-        android:layout_marginTop="@dimen/size_2"
-        android:layout_marginBottom="@dimen/size_4"
-        android:backgroundTint="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/tv_instructions"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_horizontal_top"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_horizontal_bottom"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.70"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_vertical_start"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_vertical_end"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <LinearLayout
-        android:id="@+id/linear_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/size_8"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toStartOf="@id/gl_vertical_end"
-        app:layout_constraintStart_toStartOf="@id/gl_vertical_start">
-
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Header"
-            tools:text="Sunny"/>
-
-        <TextView
-            android:id="@+id/tv_temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_4"
-            style="@style/Header"
-            tools:text="13 °C"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/temps_linear_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/size_4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linear_layout">
-
-
-        <TextView
-            android:id="@+id/tv_min_temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Detail"
-            tools:text="Min: 5"/>
-
-        <TextView
-            android:id="@+id/tv_max_temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_4"
-            style="@style/Detail"
-            tools:text="Max: 25"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_wind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Detail"
-        android:layout_marginTop="@dimen/size_4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/temps_linear_layout"
-        tools:text="Wind: 50 p/h"/>
-
-    <ImageView
-        android:id="@+id/iv_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tv_location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_wind"
-        tools:src="@drawable/ic_launcher_background" />
-
-    <TextView
-        android:id="@+id/tv_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/gl_horizontal_bottom"
-        style="@style/Header"
-        tools:text="London"/>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <include
-        android:id="@+id/weather_error"
-        layout="@layout/layout_error"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        tools:visibility="gone" />
+        tools:context=".ui.MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/discreteSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginTop="@dimen/size_3"
+            android:layout_marginEnd="@dimen/size_4"
+            android:stepSize="25.0"
+            android:value="0.0"
+            android:valueFrom="0.0"
+            android:valueTo="100.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gl_horizontal_bottom" />
+
+        <TextView
+            android:id="@+id/tv_instructions"
+            style="@style/Instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_4"
+            android:gravity="center"
+            android:lines="2"
+            android:text="@string/tv_instructions"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/discreteSlider" />
+
+        <ImageButton
+            android:id="@+id/ib_get_location"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="@dimen/size_4"
+            android:layout_marginBottom="@dimen/size_4"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/ic_baseline_location_on_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_instructions" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_horizontal_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.70" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Sunny" />
+
+            <TextView
+                android:id="@+id/tv_temperature"
+                style="@style/Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                tools:text="13 °C" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/temps_linear_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout">
+
+
+            <TextView
+                android:id="@+id/tv_min_temperature"
+                style="@style/Detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Min: 5" />
+
+            <TextView
+                android:id="@+id/tv_max_temperature"
+                style="@style/Detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                tools:text="Max: 25" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_wind"
+            style="@style/Detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/temps_linear_layout"
+            tools:text="Wind: 50 p/h" />
+
+        <ImageView
+            android:id="@+id/iv_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tv_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_wind"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            style="@style/Header"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/gl_horizontal_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="London" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/weather_error"
+            layout="@layout/layout_error"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_weather"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
