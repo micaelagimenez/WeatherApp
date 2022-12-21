@@ -18,8 +18,7 @@ App supports screen orientation change to show the data.
 ## Screenshots
 <p float="left">
 <img src="https://github.com/micaelagimenez/WeatherApp/blob/master/screenshots/1.jpeg" width="250" height="450">
-<img src="https://github.com/micaelagimenez/WeatherApp/blob/main/screenshots/2.jpeg" width="250" height="450"><br>
-<img src="https://github.com/micaelagimenez/WeatherApp/blob/main/screenshots/3.jpeg" width="250" height="450">
+<img src="https://github.com/micaelagimenez/WeatherApp/blob/master/screenshots/2.jpeg" width="250" height="450">
 </p>
 
 ## Libraries Used
